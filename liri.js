@@ -58,7 +58,7 @@ function concert() {
             for (var i = 0; i < concertResponse.data.length; i++) {
 
                 var concert = concertResponse.data[i].venue
-                console.log("Concert Date: " + moment(concert.date).format("L"));
+                console.log("Event Date: " + moment(concert.date).format("L"));
                 console.log("Venue Name: " + concert.name);
                 console.log("Venue City: " + concert.city); 
             }
@@ -85,15 +85,33 @@ function spotify () {
 }
 
 
-
-
-
-
-
-
-
-
 // declaring movie/OMDB function that was called in the switch commands
 function movie() {
+    var movieInput = "";
 
-}
+    if (value === "") {
+        movieInput = "Mr. Nobody"
+    } else {
+        movieInput = value
+    }
+
+    axios.get("http://www.omdbapi.com/?t=" + movieInput + "&apikey=fccf59cc")
+    .then (function (response) {
+          console.log("Title: " + response.data.Title);
+          console.log("Release Year: " + response.data.Year);
+          console.log("Imdb Rating: " + response.data.imdbRating);
+          console.log("Rotten Tomatoes Score: " + response.data.Ratings[1].Value);
+          console.log("Country: " + response.data.Country);
+          console.log("Language: " + response.data.Language);
+          console.log("Plot: " + response.data.Plot);
+          console.log("Actors: " + response.data.Actors);
+
+    })
+
+};
+
+
+// what it says function declaration 
+function whatItSays (
+    
+)
