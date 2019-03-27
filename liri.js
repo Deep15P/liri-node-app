@@ -1,4 +1,4 @@
-require("dotenv").config();
+var dotenv = require("dotenv").config();
 var keys = require("./keys");
 
 // axios
