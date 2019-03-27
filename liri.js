@@ -66,6 +66,34 @@ function concert() {
     )
 }
 
+// spotify this song / spotify function declaration
+function spotify () {
+
+    text.search({
+        type: 'track',
+        query: value,
+        limit: 3,
+    }) .then(function (response) {
+        console.log("Artists: " + response.tracks.items[0].album.artists[0].name);
+        console.log("Song Name: " + response. tracks.items[0].name);
+        console.log("Song Preview: " + response.tracks.items[0].preview_url);
+        console.log("Album Name: " + response.tracks.items[0].album.name);
+    })
+    .catch(function (err) {
+        console.log(err);
+    })
+}
+
+
+
+
+
+
+
+
+
 
 // declaring movie/OMDB function that was called in the switch commands
-function 
+function movie() {
+
+}
