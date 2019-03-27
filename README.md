@@ -50,3 +50,7 @@ Open it in terminal then run one of the following commands:
 * Spotify API
 * Bands in Town API
 * OMDB API
+
+## Updated Portfolio Page 
+https://deep15p.github.io/Updated-Portfolio-Page/
+https://github.com/Deep15P/Updated-Portfolio-Page
