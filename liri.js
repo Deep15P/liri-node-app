@@ -1,21 +1,28 @@
 var dotenv = require("dotenv").config();
-var keys = require("./keys");
+var keys = require("./keys.js");
 
 // axios
 var axios = require("axios");
 
-// keys
-var test = new Spotify(keys.spotify);
-
 var Spotify = require("node-spotify-api");
+
+// keys
+var spotify = new Spotify(keys.spotify);
 
 // time
 var moment = require("moment");
 
 // arguments
-var go = process.argv[2];
-var value = process.argv.slice(3).join("+");
+var userinput = process.argv
+var go = userinput[2];
+var value = userinput[3];
 
+
+for (i = 4; i < userinput.length; i++) { 
+    value += '+' + userinput[i];
+}
+
+console.log(value);
 // switch commands
 switch(go) {
     case "concert-this":
@@ -23,7 +30,7 @@ switch(go) {
     break;
 
     case "spotify-this-song":
-    spotify();
+    spotifySearch();
     break;
 
     case "movie-this":
@@ -38,18 +45,20 @@ switch(go) {
 // creating the fs variable, and reading the random.txt file
 // if else statements there in case it doesn't work. It will push out an error which will 
 // tell us whats wrong
-var fs = require("fs");
+// function (whatItSays) {
+// var fs = require("fs");
 
-fs.readFile("random.txt", "utf-8", function(err, data) {
-    if(err) {
+// fs.readFile("random.txt", "utf-8", function(err, data) {
+//     if(err) {
 
-        console.log(err);
-    }
+//         console.log(err);
+//     }
 
-    console.log(data);
-})
+//     // console.log(data);
+// })
+// }
 
-axios.get("")
+// axios.get("")
 
 // declaring the concert function that we called in the switch commands
 function concert() {
@@ -70,21 +79,22 @@ function concert() {
 }
 
 // spotify this song / spotify function declaration
-function spotify () {
-
-    test.search({
-        type: 'track',
-        query: value,
-        limit: 3,
-    }) .then(function (response) {
-        console.log("Artists: " + response.tracks.items[0].album.artists[0].name);
-        console.log("Song Name: " + response. tracks.items[0].name);
-        console.log("Song Preview: " + response.tracks.items[0].preview_url);
-        console.log("Album Name: " + response.tracks.items[0].album.name);
-    })
-    .catch(function (err) {
+function spotifySearch() {
+    if (!value) {
+      value = 'reminder';
+    } 
+      spotify.search({ type: 'track', query: value, limit:1 }).then( function (data) {
+        
+          console.log("Artist: " + data.tracks.items[0].album.artists[0].name);
+          console.log("Song Name: " + data.tracks.items[0].name);
+          console.log("song Preview: " + data.tracks.items[0].preview_url);
+          console.log("Album Name: " + data.tracks.items[0].album.name)
+          
+      })
+      .catch(function(err) {
         console.log(err);
-    })
+        })
+    
 }
 
 
@@ -103,7 +113,7 @@ function movie() {
           console.log("Title: " + response.data.Title);
           console.log("Release Year: " + response.data.Year);
           console.log("Imdb Rating: " + response.data.imdbRating);
-          console.log("Rotten Tomatoes Score: " + response.data.Ratings[1].Value);
+          console.log("Rotten Tomatoes Score: " + response.data.Ratings[0].Value);
           console.log("Country: " + response.data.Country);
           console.log("Language: " + response.data.Language);
           console.log("Plot: " + response.data.Plot);
