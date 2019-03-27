@@ -52,5 +52,5 @@ Open it in terminal then run one of the following commands:
 * OMDB API
 
 ## Updated Portfolio Page 
-https://deep15p.github.io/Updated-Portfolio-Page/
-https://github.com/Deep15P/Updated-Portfolio-Page
+* https://deep15p.github.io/Updated-Portfolio-Page/
+* https://github.com/Deep15P/Updated-Portfolio-Page
