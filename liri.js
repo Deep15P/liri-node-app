@@ -5,7 +5,9 @@ var keys = require("./keys");
 var axios = require("axios");
 
 // keys
-var spotify = new Spotify(keys.spotify);
+var test = new Spotify(keys.spotify);
+
+var Spotify = require("node-spotify-api");
 
 // time
 var moment = require("moment");
@@ -70,7 +72,7 @@ function concert() {
 // spotify this song / spotify function declaration
 function spotify () {
 
-    text.search({
+    test.search({
         type: 'track',
         query: value,
         limit: 3,
