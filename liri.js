@@ -1,10 +1,14 @@
-var dotenv = require("dotenv").config();
+require("dotenv").config();
 var keys = require("./keys.js");
+
 
 // axios
 var axios = require("axios");
 
 var Spotify = require("node-spotify-api");
+
+// do what it says 
+var fs = require("fs");
 
 // keys
 var spotify = new Spotify(keys.spotify);
@@ -23,7 +27,10 @@ for (i = 4; i < userinput.length; i++) {
 }
 
 console.log(value);
+
 // switch commands
+function code() {
+
 switch(go) {
     case "concert-this":
     concert();
@@ -41,24 +48,37 @@ switch(go) {
     whatItSays();
     break;
 }
+};
+
+code();
 
 // creating the fs variable, and reading the random.txt file
 // if else statements there in case it doesn't work. It will push out an error which will 
 // tell us whats wrong
-// function (whatItSays) {
-// var fs = require("fs");
 
-// fs.readFile("random.txt", "utf-8", function(err, data) {
-//     if(err) {
+function whatItSays() {
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) {
+            console.log(error);
+        }
+        console.log(data);
+        var array = data.split(",");
+        console.log(array)
+        var array2 = array[1].split(" ");
 
-//         console.log(err);
-//     }
+        go = array[0]
 
-//     // console.log(data);
-// })
-// }
+        value = array2[0]
 
-// axios.get("")
+        for (i = 1; i < array2.length; i++) {
+            value += "+" + array2[i]
+
+        }
+        code();
+    })
+}
+
+
 
 // declaring the concert function that we called in the switch commands
 function concert() {
