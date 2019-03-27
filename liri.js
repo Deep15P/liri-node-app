@@ -33,8 +33,9 @@ switch(go) {
     break;
 }
 
-// creating the fs variable, and adding if else statements to it 
-// so that we can get some sort of output weather its an error or the acutal data
+// creating the fs variable, and reading the random.txt file
+// if else statements there in case it doesn't work. It will push out an error which will 
+// tell us whats wrong
 var fs = require("fs");
 
 fs.readFile("random.txt", "utf-8", function(err, data) {
@@ -110,8 +111,3 @@ function movie() {
 
 };
 
-
-// what it says function declaration 
-function whatItSays (
-    
-)
